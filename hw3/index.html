@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Joe's Hotdogs</title>
+<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header>
+<div class="logo">Joe's Hotdogs</div>
+<nav>
+<ul>
+<li><a href="index.html">Our Story</a></li>
+<li><a href="index.html">Menu</a></li>
+<li><a href="index.html">Drinks</a></li>
+<li><a href="index.html">Order</a></li>
+<li><a href="index.html">Jobs</a></li>
+<li><a href="index.html">Merch</a></li>
+</ul>
+</nav>
+</header>
+<div class="hero">
+</div>
+<div class="welcome-text">
+<h1>Welcome to Joe's Hotdog Stand</h1>
+<h2>Order Now!</h2>
+<button onclick="takeOrder()">Start Order</button>
+</div>
+<table>
+<thead>
+<tr>
+<th>ITEM</th>
+<th>QUANTITY</th>
+<th>TOTAL ($)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hotdogs</td>
+<td id="qhotdog"></td>
+<td id="pricehotdog"></td>
+</tr>
+<tr>
+<td>Fries</td>
+<td id="qfries"></td>
+<td id="pricefries"></td>
+</tr>
+<tr>
+<td>Drinks</td>
+<td id="qdrinks"></td>
+<td id="pricedrinks"></td>
+</tr>
+</tbody>
+</table>
+<div class="summary">
+<h3 id="originalsubtotal"></h3>
+<h3 id="discount"></h3>
+<h3 id="newsubtotal"></h3>
+<h3 id="tax"></h3>
+<h3 id="finalprice"></h3>
+</div>
+<script>
+    const HOT_DOG_PRICE = 4.99;
+    const FRIES_PRICE = 3.99;
+    const DRINKS_PRICE = 1.79;
+    function takeOrder(){
+        let numDogs = parseInt(prompt("Enter the number of Hot Dogs: "), 10);
+        let numFries = parseInt(prompt("Enter the number of Fries: "), 10);
+        let numSoda = parseInt(prompt("Enter the number of Drinks: "), 10);
+        original_subtotal = (numDogs * HOT_DOG_PRICE) + 
+            (numFries * FRIES_PRICE) + (numSoda * DRINKS_PRICE);
+        discount = 0;
+        if(original_subtotal >= 30){
+            discount = original_subtotal * 0.10;
+        }
+        new_subtotal = original_subtotal - discount;
+        tax = new_subtotal * 0.0625;
+        final_price = new_subtotal + tax;
+
+        document.getElementById("qhotdog").innerText = numDogs;
+        document.getElementById("pricehotdog").innerText = 
+            showMoney(numDogs * HOT_DOG_PRICE);
+        document.getElementById("qfries").innerText = numFries;
+        document.getElementById("pricefries").innerText = 
+            showMoney(numFries * FRIES_PRICE);
+        document.getElementById("qdrinks").innerText = numSoda;
+        document.getElementById("pricedrinks").innerText = 
+            showMoney(numSoda * DRINKS_PRICE);
+
+        document.getElementById("originalsubtotal").innerText = 
+            "Subtotal Before Discount: $" + showMoney(original_subtotal);
+        document.getElementById("discount").innerText = 
+            "Discount Applied: $" + showMoney(discount);
+        document.getElementById("newsubtotal").innerText = 
+            "Subtotal After Discount = $" + showMoney(new_subtotal);
+        document.getElementById("tax").innerText = 
+            "Tax Amount: $" + showMoney(tax);
+        document.getElementById("finalprice").innerText = 
+            "FINAL TOTAL: $" + showMoney(final_price);
+        
+    }
+    function showMoney(money_input){
+        let cents = money_input * 100;
+        let dollars = Math.floor(cents / 100);
+        cents =  Math.round(cents - dollars * 100);
+
+        if(cents < 10){
+            return dollars + ".0" + cents;
+        }
+        else return dollars + "." + cents;
+    }
+
+
+
+
+</script>
+</body>
+</html>
