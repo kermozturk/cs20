@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tic Tac Toe Part 4</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.grid{
+    display: flex;
+    flex-wrap: wrap; 
+    width: 360px;
+    margin: 30px auto;
+    border: 3px solid black;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px 10px;
+}
+.square{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    font-size: 120px;
+    text-align: center;
+    line-height: 100px;
+    margin: 3px;
+
+}
+.square:hover{
+    background-color: bisque;
+    cursor: pointer;
+}
+h1{
+    text-align: center;
+    font-size: 30px;
+}
+#turn, #win-condition{
+    border: 2px solid black;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+#startButton{
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 20px;
+    border: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 200px;
+    margin: 20px auto;
+    display: block;
+
+}
+</style>
+</head>
+<body>
+<h1>Tic Tac Toe - Let's Go!</h1>
+<div id="turn">Player X Turn</div>
+<div class="grid">
+<script>
+    gameEnded = false;
+    if(Math.random() < 0.5){
+        player = "X";
+    }
+    else player = "O";
+    
+    let turndiv = document.getElementById("turn");
+    turndiv.innerHTML = "Player " + player + " turn";
+    
+    function clickSquare(index){
+        let square = document.getElementById("sq" + index);
+        
+        if(square.innerHTML == "" && gameEnded == false){
+            square.innerHTML = player;
+            if (player == "X") player = "O";
+            else player = "X";
+            turndiv.innerHTML = "Player " + player + " turn";
+            let squaresArray = document.querySelectorAll(".square");
+            let moves = [];
+            squaresArray.forEach(function(square){
+                if(square.innerHTML == ""){
+                    moves.push("-");
+                }
+                else{
+                    moves.push(square.innerHTML);
+                }
+            });
+            winConditions = [
+                moves[0] + moves[1] + moves[2],
+                moves[3] + moves[4] + moves[5],
+                moves[6] + moves[7] + moves[8],
+                moves[0] + moves[3] + moves[6],
+                moves[1] + moves[4] + moves[7],
+                moves[2] + moves[5] + moves[8],
+                moves[0] + moves[4] + moves[8],
+                moves[2] + moves[4] + moves[6]
+            ];
+            // includes checks if the element is in the array
+            if(winConditions.includes("XXX")){
+                document.getElementById("win-condition").innerHTML = "WINNER: X";
+                gameEnded = true;
+            }
+            else if(winConditions.includes("OOO")){
+                document.getElementById("win-condition").innerHTML = "WINNER: O";
+                gameEnded = true;
+            }
+            else{
+                if(!moves.includes("-")){
+                    document.getElementById("win-condition").innerHTML = "STALEMATE";
+                    gameEnded = true;
+                }
+            }
+
+        }
+    }
+    
+    const NUM_SQUARES = 9;
+    for (i=0; i<NUM_SQUARES; i++)
+    {
+    id = "sq"+i;
+    document.write( "<div class='square' id='" + id + "'></div>" );
+    }
+
+    for(let j = 0; j < NUM_SQUARES; j++){
+        let square = document.getElementById("sq" + j);
+        square.onclick = function(){
+        clickSquare(j);
+    }
+    }
+    
+    window.onload = function(){
+        document.getElementById("startButton").onclick = function(){
+            for(let i = 0; i < NUM_SQUARES; i++){
+                document.getElementById("sq" + i).innerHTML = "";
+            }
+            if(Math.random() < 0.5){
+                player = "X"
+            }
+            else player = "O"
+            turndiv = document.getElementById("turn");
+            turndiv.innerHTML = "Player " + player + " turn";
+            document.getElementById("win-condition").innerHTML = "WINNER:";
+            gameEnded = false;
+        }
+
+    }
+
+</script>
+</div>
+<div id="win-condition">WINNER: </div>
+<button id="startButton">Start Game</button>
+
+</body>
+</html>
