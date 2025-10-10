@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jQuery Part 2</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+</script>
+<script language="javascript">
+    $(document).ready(function(){
+        $("#check_all").click(function(){
+            var is_checked = $("#check_all").prop('checked');
+
+            $(".option").prop('checked', is_checked);
+
+            if(is_checked){
+                $("#check_all_label").text("Uncheck All");
+            }
+            else{
+                $("#check_all_label").text("Check All");
+            }
+
+        });
+    });
+
+</script>
+<style>
+body{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.checkboxes{
+    align-items: center;
+    margin-top: 200px;
+    font-size: 30px;
+    line-height: 2;
+}
+input[type="checkbox"]{
+    transform: scale(2);
+}
+</style>
+</head>
+<body>
+<div class="checkboxes">
+<input type="checkbox" id="check_all">
+<label id="check_all_label" for="check_all">Check All</label><br/><br/>
+<input type="checkbox" id="first" class="option">
+<label for="first">first</label><br/>
+<input type="checkbox" id="second" class="option">
+<label for="second">second</label><br/>
+<input type="checkbox" id="third" class="option">
+<label for="third">third</label><br/>
+<input type="checkbox" id="fourth" class="option">
+<label for="fourth">fourth</label>
+</div>
+</body>
+</html>

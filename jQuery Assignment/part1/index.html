@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jQuery Part 1</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+</script>
+<script language="javascript">
+    $(document).ready(function(){
+        $("#jumpButton").click(function(){
+            var text_right = $("#button_right").val();
+            var text_left = $("#button_left").val();
+            var text_button = $("#jumpButton").text();
+
+            if(text_button == "JUMP >"){
+                $("#button_right").val(text_left);
+                $("#button_left").val("");
+                $("#jumpButton").text("< JUMP");
+            }
+            if(text_button == "< JUMP"){
+                $("#button_left").val(text_right)
+                $("#button_right").val("");
+                $("#jumpButton").text("JUMP >");
+            }
+        });
+    });
+
+</script>
+<style>
+.button_container{
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    gap: 10px;
+}
+input{
+    font-size: 20px;
+    padding: 20px;
+}
+button{
+    padding: 8px;
+    font-size: 20px;
+    width: 150px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="button_container">
+<input type="text" id="button_left" placeholder="Enter Text...">
+<button id="jumpButton">JUMP ></button>
+<input type="text" id="button_right" placeholder="Enter Text...">
+</div>
+</body>
+</html>
