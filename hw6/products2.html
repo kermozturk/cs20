@@ -11,7 +11,29 @@
 <script>
     $("#loadbutton").click(function(){
       $.get("products.json", function(data){
-        console.log(data);
+        let resultDiv = document.getElementById("result");
+        for(let i = 0; i < data.length; i++){
+            let product = data[i];
+            name = document.createElement("h2");
+            name.innerHTML = product.name;
+
+            description = document.createElement("p");
+            description.innerHTML = product.description;
+
+            price = document.createElement("p");
+            price.innerHTML = "Price: $" + product.price;
+
+            categories = document.createElement("p");
+            categories.innerHTML = "Categories: " + product.categories.join(', ');
+
+            resultDiv.append(name);
+            resultDiv.append(description);
+            resultDiv.append(price);
+            resultDiv.append(categories);
+            resultDiv.append(document.createElement("br"))
+
+
+        }
       })  
     })
 </script>
