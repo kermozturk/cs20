@@ -14,16 +14,16 @@
         let resultDiv = document.getElementById("result");
         for(let i = 0; i < data.length; i++){
             let product = data[i];
-            name = document.createElement("h2");
+            let name = document.createElement("h2");
             name.innerHTML = product.name;
 
-            description = document.createElement("p");
+            let description = document.createElement("p");
             description.innerHTML = product.description;
 
-            price = document.createElement("p");
+            let price = document.createElement("p");
             price.innerHTML = "Price: $" + product.price;
 
-            categories = document.createElement("p");
+            let categories = document.createElement("p");
             categories.innerHTML = "Categories: " + product.categories.join(', ');
 
             resultDiv.append(name);
