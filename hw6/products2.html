@@ -4,6 +4,34 @@
 <meta name='viewport' content="width=device-width, initial-scale=1">
 <title>JSON Part2</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+button{
+    background-color: blueviolet;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+button::hover{
+    background-color: white;
+    color: blueviolet;
+}
+.card{
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    width: 200px;
+}
+h2{
+    font-size: 16px;
+    color: blueviolet;
+    margin-bottom: 5px;
+}
+p{
+    font-size: 13px;
+}
+</style>
 </head>
 <body>
 <button id="loadbutton">Load Products</button>
@@ -14,6 +42,10 @@
         let resultDiv = document.getElementById("result");
         for(let i = 0; i < data.length; i++){
             let product = data[i];
+
+            let card = document.createElement("div");
+            card.className = "card";
+
             let name = document.createElement("h2");
             name.innerHTML = product.name;
 
@@ -26,11 +58,11 @@
             let categories = document.createElement("p");
             categories.innerHTML = "Categories: " + product.categories.join(', ');
 
-            resultDiv.append(name);
-            resultDiv.append(description);
-            resultDiv.append(price);
-            resultDiv.append(categories);
-            resultDiv.append(document.createElement("br"))
+            card.append(name);
+            card.append(description);
+            card.append(price);
+            card.append(categories);
+            resultDiv.append(card);
 
 
         }
