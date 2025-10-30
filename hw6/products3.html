@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name='viewport' content="width=device-width, initial-scale=1">
+<title>JSON Part2</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+button{
+    background-color: blueviolet;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+button:hover{
+    background-color: white;
+    color: blueviolet;
+}
+.card{
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    width: 200px;
+}
+h2{
+    font-size: 20px;
+    color: blueviolet;
+    margin-bottom: 5px;
+}
+p{
+    font-size: 16px;
+}
+#result p{
+    font-weight: bold;
+    color: blueviolet;
+    margin: 5px 0;
+}
+</style>
+</head>
+<body>
+<button id="loadbutton">Load Products</button>
+<select id="dropdown"></select>
+<button id="filterbutton">Filter</button>
+<div id="result"></div>
+<script>
+    allProducts = [];
+    $("#loadbutton").click(function(){
+      $.get("products.json", function(data){
+        allProducts = data;
+        let resultDiv = document.getElementById("result");
+        let select = document.getElementById("dropdown");
+
+        for(let i = 0; i < data.length; i++){
+            let product = data[i];
+            for(let j = 0; j < product.categories.length; j++){
+                let category = product.categories[j];
+            }
+            let exists = false;
+            for(let k = 0; k < select.options.length; k++){
+                if(select.options[k].value == category) exists = true;
+            }
+
+            if(!exists){
+                let option = document.createElement("option");
+                option.value = category;
+                option.text = category;
+                select.append(option);
+            }
+
+            let card = document.createElement("div");
+            card.className = "card";
+
+            let name = document.createElement("h2");
+            name.innerHTML = product.name;
+
+            let description = document.createElement("p");
+            description.innerHTML = product.description;
+
+            let price = document.createElement("p");
+            price.innerHTML = "Price: $" + product.price;
+
+            let categories = document.createElement("p");
+            categories.innerHTML = "Categories: " + product.categories.join(', ');
+
+            card.append(name);
+            card.append(description);
+            card.append(price);
+            card.append(categories);
+            resultDiv.append(card);
+
+
+        }
+      })  
+    })
+    $("#filterbutton").click(function(){
+        let chosen = document.getElementById("dropdown").value;
+        let resultDiv = document.getElementById("result");
+        for(let i = 0; i < allProducts.length; i++){
+            let product = allProducts[i];
+            if(product.categories.includes(chosen)){
+                let p = document.createElement("p");
+                p.innerHTML = product.name;
+                resultDiv.append(p);
+            }
+        }
+
+    })
+</script>
+</body>
+</html>
