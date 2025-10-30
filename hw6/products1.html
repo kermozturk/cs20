@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name='viewport' content="width=device-width, initial-scale=1">
+<title>JSON Part1</title>
+</head>
+<body>
+<script>
+fetch("products.json")
+    .then(res => res.text())
+    .then(data => {
+        document.write(data);
+    })
+    .catch(error => console.log(error));
+</script>
+</body>
+</html>

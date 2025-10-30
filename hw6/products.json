@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Vintage T-shirt",
+        "description": "Tie-die Grateful Dead T-shirt",
+        "price": 35,
+        "categories": ["clothing", "vintage"]
+    },
+    {
+        "name": "Beach Towel",
+        "description": "Large cotton towel with stripes",
+        "price": 22,
+        "categories": ["home", "outdoor"]
+    },
+    {
+        "name": "Leather Keychain",
+        "description": "handmade and brown keychain",
+        "price": 10,
+        "categories": ["accessories", "handmade", "gifts"]
+    },
+    {
+        "name": "Mouse Pad",
+        "description": "Smooth and memory foam pad",
+        "price": 12,
+        "categories": ["office", "computer"]
+    }
+]
