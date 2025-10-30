@@ -55,18 +55,18 @@ p{
             let product = data[i];
             for(let j = 0; j < product.categories.length; j++){
                 let category = product.categories[j];
-            }
-            let exists = false;
-            for(let k = 0; k < select.options.length; k++){
-                if(select.options[k].value == category) exists = true;
+                let exists = false;
+                for(let k = 0; k < select.options.length; k++){
+                    if(select.options[k].value == category) exists = true;
+                }
+                if(!exists){
+                    let option = document.createElement("option");
+                    option.value = category;
+                    option.text = category;
+                    select.append(option);
+                }
             }
 
-            if(!exists){
-                let option = document.createElement("option");
-                option.value = category;
-                option.text = category;
-                select.append(option);
-            }
 
             let card = document.createElement("div");
             card.className = "card";
