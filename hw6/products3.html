@@ -31,7 +31,7 @@ h2{
 p{
     font-size: 16px;
 }
-#result p{
+.filteredName{
     font-weight: bold;
     color: blueviolet;
     margin: 5px 0;
@@ -103,6 +103,7 @@ p{
             if(product.categories.includes(chosen)){
                 let p = document.createElement("p");
                 p.innerHTML = product.name;
+                p.className = "filteredName";
                 resultDiv.append(p);
             }
         }
