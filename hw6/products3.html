@@ -96,6 +96,7 @@ p{
     $("#filterbutton").click(function(){
         let chosen = document.getElementById("dropdown").value;
         let resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = "";
         for(let i = 0; i < allProducts.length; i++){
             let product = allProducts[i];
             if(product.categories.includes(chosen)){
