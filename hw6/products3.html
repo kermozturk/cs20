@@ -44,8 +44,9 @@ p{
 <button id="filterbutton">Filter</button>
 <div id="result"></div>
 <script>
-    allProducts = [];
     $("#loadbutton").click(function(){
+      allProducts = [];
+      document.getElementById("result").innerHTML = "";
       $.get("products.json", function(data){
         allProducts = data;
         let resultDiv = document.getElementById("result");
