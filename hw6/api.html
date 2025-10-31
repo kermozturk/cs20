@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name='viewport' content="width=device-width, initial-scale=1">
+<title>API HW</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Google Flights API Demo</h1>
+    <button id="loadbutton">Get Flights</button>
+    <div id="results"></div>
+</br>
+<h2>About the API</h2> </br>
+<p>The API I selected retrieves random images of dogs. The main reason I used this API
+    was I lost a lot of time finding the appropriate API to use. Initially, I tried using
+    Google Flight API and retrieving flight data from the API. However, even though my get
+    request was successfuk, it returned an error message. It turned out that the API
+    was problematic, but it costed me a lot of time. So, I wanted to go with a simple
+    API that gives dog images. Also, I really like dogs and seeing them on my screen
+    made me really happy.
+</p> </br></br>
+<p><strong>Website: </strong>https://dog.ceo/dog-api/documentation/</p> </br> </br>
+<p><strong>Parameters Used:  </strong>The parameter used is the breed name in the URL
+in my url, doberman is my parameter, so the API only returns images of dogs that
+have the breed doberman</p> </br> </br>
+<p>This API could be helpful if someone decided to learn more about different dog breeds
+    and wanted to see what they look like. For example, it could be used in a website that
+    quizzes the users on dog breeds. The answers could be compared to the breed parameter.
+</p>
+
+
+
+
+<script>
+document.getElementById("loadbutton").onclick = function(){
+    var request = new XMLHttpRequest();
+    var url = "https://dog.ceo/api/breed/doberman/image/random";
+    request.open("GET", url, true);
+    request.onreadystatechange = function(){
+        if(request.readyState == 4 && request.status == 200){
+            var data = JSON.parse(request.responseText);
+            var resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "<img src='" + data.message + "' width = '300'>";
+        }
+    }
+    request.send();
+}
+</script>
+</body>
+</html>
