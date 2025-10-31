@@ -34,7 +34,7 @@ have the breed doberman</p> </br> </br>
 <script>
 document.getElementById("loadbutton").onclick = function(){
     var request = new XMLHttpRequest();
-    var url = "https://dog.ceo/api/breed/doberman/image/random";
+    var url = "https://dog.ceo/api/breed/doberman/images/random";
     request.open("GET", url, true);
     request.onreadystatechange = function(){
         if(request.readyState == 4 && request.status == 200){
